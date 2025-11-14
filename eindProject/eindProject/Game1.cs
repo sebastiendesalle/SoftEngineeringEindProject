@@ -6,15 +6,14 @@ namespace eindProject
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private Texture2D _texture;
-        private Rectangle _deelRectangle;
-        private int moveOn_X = 0;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private Texture2D heroTexture;
+        private Hero hero;
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
@@ -22,17 +21,17 @@ namespace eindProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _deelRectangle = new Rectangle(moveOn_X, 0, 140, 170);
             base.Initialize();
+            hero = new Hero(heroTexture);
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
 
-            _texture = Content.Load<Texture2D>("charSprite");
+            heroTexture = Content.Load<Texture2D>("GoblinKingSpriteSheet");
         }
 
         protected override void Update(GameTime gameTime)
@@ -41,33 +40,17 @@ namespace eindProject
                 Exit();
 
             // TODO: Add your update logic here
-
+            hero.Update();
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             // TODO: Add your drawing code here
-            _spriteBatch.Draw(
-                _texture,
-                new Vector2(0, 0),
-                _deelRectangle,
-                Color.White,
-                0f,
-                Vector2.Zero,
-                1.0f, // <-- This makes it 7x larger
-                SpriteEffects.None,
-                0f
-            );
-            _spriteBatch.End();
-            moveOn_X += 170;
-            if (moveOn_X > 680)
-            {
-                moveOn_X = 0;
-            }
-            _deelRectangle.X = moveOn_X;
+            spriteBatch.Begin();
+            hero.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

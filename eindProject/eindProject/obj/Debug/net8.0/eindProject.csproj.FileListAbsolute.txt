@@ -66,4 +66,4 @@ C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\S
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\obj\Debug\net8.0\eindProject.pdb
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\obj\Debug\net8.0\eindProject.genruntimeconfig.cache
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\obj\Debug\net8.0\ref\eindProject.dll
-C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\bin\Debug\net8.0\Content\charSprite.xnb
+C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\bin\Debug\net8.0\Content\GoblinKingSpriteSheet.xnb

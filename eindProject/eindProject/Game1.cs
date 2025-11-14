@@ -10,6 +10,7 @@ namespace eindProject
         private SpriteBatch spriteBatch;
         private Texture2D heroTexture;
         private Hero hero;
+        
 
         public Game1()
         {
@@ -40,7 +41,7 @@ namespace eindProject
                 Exit();
 
             // TODO: Add your update logic here
-            hero.Update();
+            hero.Update(gameTime);
             base.Update(gameTime);
         }
 

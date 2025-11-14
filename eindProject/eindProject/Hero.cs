@@ -1,27 +1,33 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.CompilerServices;
 
 namespace eindProject
 {
     internal class Hero : IGameObject
     {
         private Texture2D heroTexture;
-        private Rectangle deelRectangle;
-
-        private int moveOn_X = 0;
+        Animation animation;
+        private Vector2 position;
 
         public Hero(Texture2D texture)
         {
             this.heroTexture = texture;
-            deelRectangle = new Rectangle(moveOn_X, 64, 64, 64);
+            animation = new Animation();
+            animation.AddFrame(new AnimationFrame(new Rectangle(0, 64, 64, 64)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(64, 64, 64, 64)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(128, 64, 64, 64)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(192, 64, 64, 64)));
+            animation.AddFrame(new AnimationFrame(new Rectangle(256, 64, 64, 64)));
         }
         public void Draw(SpriteBatch spriteBatch)
         {
+            position = new Vector2(0, 0);
             spriteBatch.Draw(
                 heroTexture,
-                new Vector2(0, 0),
-                deelRectangle,
+                position,
+                animation.CurrentFrame.SourceRectangle,
                 Color.White,
                 0f,
                 Vector2.Zero,
@@ -31,14 +37,9 @@ namespace eindProject
             );
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            moveOn_X += 64;
-            if (moveOn_X > 384)
-            {
-                moveOn_X = 0;
-            }
-            deelRectangle.X = moveOn_X;
+            animation.Update(gameTime);
         }
     }
 }

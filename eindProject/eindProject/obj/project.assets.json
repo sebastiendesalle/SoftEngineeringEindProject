@@ -301,11 +301,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\school\\programming\\j2s1-aangepast\\Software engineering\\eindProjectSoftEngin\\eindProject\\eindProject\\eindProject.csproj",
+      "projectUniqueName": "C:\\school\\programming\\j2s1-aangepast\\Software engineering\\eindProjectSoftEngin\\SoftEngineeringEindProject\\eindProject\\eindProject\\eindProject.csproj",
       "projectName": "eindProject",
-      "projectPath": "C:\\school\\programming\\j2s1-aangepast\\Software engineering\\eindProjectSoftEngin\\eindProject\\eindProject\\eindProject.csproj",
+      "projectPath": "C:\\school\\programming\\j2s1-aangepast\\Software engineering\\eindProjectSoftEngin\\SoftEngineeringEindProject\\eindProject\\eindProject\\eindProject.csproj",
       "packagesPath": "C:\\Users\\desal\\.nuget\\packages\\",
-      "outputPath": "C:\\school\\programming\\j2s1-aangepast\\Software engineering\\eindProjectSoftEngin\\eindProject\\eindProject\\obj\\",
+      "outputPath": "C:\\school\\programming\\j2s1-aangepast\\Software engineering\\eindProjectSoftEngin\\SoftEngineeringEindProject\\eindProject\\eindProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

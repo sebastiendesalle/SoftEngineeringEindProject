@@ -32,7 +32,6 @@ C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\e
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\eindProject\eindProject\obj\Debug\net8.0\eindProject.genruntimeconfig.cache
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\eindProject\eindProject\obj\Debug\net8.0\ref\eindProject.dll
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\eindProject\eindProject\bin\Debug\net8.0\Content\SwamplingSpriteSheet.xnb
-C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\bin\Debug\net8.0\Content\SwamplingSpriteSheet.xnb
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\bin\Debug\net8.0\eindProject.exe
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\bin\Debug\net8.0\eindProject.deps.json
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\bin\Debug\net8.0\eindProject.runtimeconfig.json
@@ -67,3 +66,4 @@ C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\S
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\obj\Debug\net8.0\eindProject.pdb
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\obj\Debug\net8.0\eindProject.genruntimeconfig.cache
 C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\obj\Debug\net8.0\ref\eindProject.dll
+C:\school\programming\j2s1-aangepast\Software engineering\eindProjectSoftEngin\SoftEngineeringEindProject\eindProject\eindProject\bin\Debug\net8.0\Content\charSprite.xnb

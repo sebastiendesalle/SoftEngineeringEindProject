@@ -10,6 +10,7 @@ namespace eindProject
         private SpriteBatch _spriteBatch;
         private Texture2D _texture;
         private Rectangle _deelRectangle;
+        private int moveOn_X = 0;
 
         public Game1()
         {
@@ -21,7 +22,7 @@ namespace eindProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _deelRectangle = new Rectangle(0, 0, 32, 33);
+            _deelRectangle = new Rectangle(moveOn_X, 0, 140, 170);
             base.Initialize();
         }
 
@@ -31,7 +32,7 @@ namespace eindProject
 
             // TODO: use this.Content to load your game content here
 
-            _texture = Content.Load<Texture2D>("SwamplingSpriteSheet");
+            _texture = Content.Load<Texture2D>("charSprite");
         }
 
         protected override void Update(GameTime gameTime)
@@ -56,11 +57,17 @@ namespace eindProject
                 Color.White,
                 0f,
                 Vector2.Zero,
-                7.0f, // <-- This makes it 7x larger
+                1.0f, // <-- This makes it 7x larger
                 SpriteEffects.None,
                 0f
             );
             _spriteBatch.End();
+            moveOn_X += 170;
+            if (moveOn_X > 680)
+            {
+                moveOn_X = 0;
+            }
+            _deelRectangle.X = moveOn_X;
             base.Draw(gameTime);
         }
     }

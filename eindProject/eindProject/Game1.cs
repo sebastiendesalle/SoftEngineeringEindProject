@@ -21,7 +21,7 @@ namespace eindProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _deelRectangle = new Rectangle(0, 0, 32, 53);
+            _deelRectangle = new Rectangle(0, 0, 32, 33);
             base.Initialize();
         }
 
@@ -47,9 +47,19 @@ namespace eindProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             // TODO: Add your drawing code here
-            _spriteBatch.Draw(_texture, new Vector2(0, 0), _deelRectangle, Color.White);
+            _spriteBatch.Draw(
+                _texture,
+                new Vector2(0, 0),
+                _deelRectangle,
+                Color.White,
+                0f,
+                Vector2.Zero,
+                7.0f, // <-- This makes it 7x larger
+                SpriteEffects.None,
+                0f
+            );
             _spriteBatch.End();
             base.Draw(gameTime);
         }

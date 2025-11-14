@@ -10,6 +10,8 @@ namespace eindProject
         private Texture2D heroTexture;
         Animation animation;
         private Vector2 position;
+        private Vector2 speed;
+        
 
         public Hero(Texture2D texture)
         {
@@ -20,10 +22,10 @@ namespace eindProject
             animation.AddFrame(new AnimationFrame(new Rectangle(128, 64, 64, 64)));
             animation.AddFrame(new AnimationFrame(new Rectangle(192, 64, 64, 64)));
             animation.AddFrame(new AnimationFrame(new Rectangle(256, 64, 64, 64)));
+            speed = new Vector2(1, 1);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            position = new Vector2(0, 0);
             spriteBatch.Draw(
                 heroTexture,
                 position,
@@ -40,6 +42,20 @@ namespace eindProject
         public void Update(GameTime gameTime)
         {
             animation.Update(gameTime);
+            Move();
+        }
+
+        private void Move()
+        {
+            position += speed;
+            if (position.X > 800 - 280 || position.X < 0)
+            {
+                speed.X *= -1;
+            }
+            if (position.Y > 480 - 320 || position.Y < 0)
+            {
+                speed.Y *= -1;
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace eindProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _deelRectangle = new Rectangle(0, 0, 180, 247);
+            _deelRectangle = new Rectangle(0, 0, 32, 53);
             base.Initialize();
         }
 
@@ -49,7 +49,7 @@ namespace eindProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
             // TODO: Add your drawing code here
-            _spriteBatch.Draw(_texture, new Vector2(0, 0), Color.White);
+            _spriteBatch.Draw(_texture, new Vector2(0, 0), _deelRectangle, Color.White);
             _spriteBatch.End();
             base.Draw(gameTime);
         }

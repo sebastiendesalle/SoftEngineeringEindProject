@@ -1,4 +1,5 @@
 ﻿using eindProject.Input;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,6 +13,8 @@ namespace eindProject
         private SpriteBatch spriteBatch;
         private Texture2D heroTexture;
         private Hero hero;
+
+        private List<Rectangle> _obstacles; // solid blocks
         
 
         public Game1()

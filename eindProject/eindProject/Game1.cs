@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using eindProject.Input;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -23,7 +24,7 @@ namespace eindProject
         {
             // TODO: Add your initialization logic here
             base.Initialize();
-            hero = new Hero(heroTexture);
+            
         }
 
         protected override void LoadContent()
@@ -33,6 +34,9 @@ namespace eindProject
             // TODO: use this.Content to load your game content here
 
             heroTexture = Content.Load<Texture2D>("GoblinKingSpriteSheet");
+
+            //create and pass IInputReader implementation
+            hero = new Hero(heroTexture, new KeyboardReader());
         }
 
         protected override void Update(GameTime gameTime)

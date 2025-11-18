@@ -26,6 +26,7 @@ namespace eindProject
 
 
             // use sprite coords
+            // TODO: fix hitbox (too big)
             animation = new Animation();
             animation.AddFrame(new AnimationFrame(new Rectangle(0, 64, 64, 64)));
             animation.AddFrame(new AnimationFrame(new Rectangle(64, 64, 64, 64)));

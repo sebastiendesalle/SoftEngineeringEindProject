@@ -5,6 +5,8 @@ namespace eindProject.Input
 {
     internal class MouseReader : IInputReader
     {
+
+        // TODO: make mousereader work
         private Vector2 previousPosition;
         private bool hasPrevious = false;
 

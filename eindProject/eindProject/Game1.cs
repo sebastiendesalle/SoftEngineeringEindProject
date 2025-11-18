@@ -43,7 +43,6 @@ namespace eindProject
             _obstacles.Add(new Rectangle(0, 400, 800, 50));   // Main Floor
             _obstacles.Add(new Rectangle(200, 300, 200, 30)); // Floating Platform
             _obstacles.Add(new Rectangle(500, 200, 50, 200)); // Tall Wall
-            //_obstacles.Add(new Rectangle(500, 200, 20, 40)); // TODO: see why this isn't being added
 
             // input and bounds
             var inputReader = new KeyboardReader();

@@ -1,9 +1,8 @@
 ﻿using eindProject.Input;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Reflection.Metadata.Ecma335;
+using System.Collections.Generic;
 
 namespace eindProject
 {
@@ -12,8 +11,11 @@ namespace eindProject
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Texture2D heroTexture;
+        private Texture2D pixelTexture; // For debugging walls
         private Hero hero;
-        
+
+        private List<Rectangle> _obstacles;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -23,26 +25,39 @@ namespace eindProject
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             base.Initialize();
-            
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-
             heroTexture = Content.Load<Texture2D>("GoblinKingSpriteSheet");
 
+            // create white pixel texture to draw walls
+            pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
+            pixelTexture.SetData(new Color[] { Color.White });
 
-            // create input reader and bounds
+            // make and place obstacles
+            _obstacles = new List<Rectangle>();
+            _obstacles.Add(new Rectangle(0, 400, 800, 50));   // Main Floor
+            _obstacles.Add(new Rectangle(200, 300, 200, 30)); // Floating Platform
+            _obstacles.Add(new Rectangle(500, 200, 50, 200)); // Tall Wall
+
+            // input and bounds
             var inputReader = new KeyboardReader();
             var viewport = GraphicsDevice.Viewport;
             var playArea = new Rectangle(0, 0, viewport.Width, viewport.Height);
-            //create and pass IInputReader implementation
-            hero = new Hero(heroTexture, inputReader, playArea, moveSpeed: 200f, scale: 5f);
+
+            // create hero
+            hero = new Hero(
+                heroTexture,
+                inputReader,
+                _obstacles,
+                playArea,
+                new Vector2(50, 50), // Start Position
+                scale: 2f // I lowered scale slightly so he fits better
+            );
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,7 +65,6 @@ namespace eindProject
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
             hero.Update(gameTime);
             base.Update(gameTime);
         }
@@ -58,9 +72,17 @@ namespace eindProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // TODO: Add your drawing code here
+
             spriteBatch.Begin();
+
+            // draw the obstacles so they aren't inviz
+            foreach (var rect in _obstacles)
+            {
+                spriteBatch.Draw(pixelTexture, rect, Color.Black);
+            }
+
             hero.Draw(spriteBatch);
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

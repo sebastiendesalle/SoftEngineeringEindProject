@@ -13,10 +13,7 @@ namespace eindProject
         private SpriteBatch spriteBatch;
         private Texture2D heroTexture;
         private Hero hero;
-
-        private List<Rectangle> _obstacles; // solid blocks
         
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

@@ -9,7 +9,6 @@ namespace eindProject.Input
         private bool hasPrevious = false;
 
         // Returns a direction vector based on mouse movement delta.
-        // Normalize so the result is a direction (-1..1 per axis). Returns Vector2.Zero if no movement.
         public Vector2 ReadInput()
         {
             MouseState state = Mouse.GetState();

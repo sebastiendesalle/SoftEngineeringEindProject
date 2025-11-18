@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Reflection.Metadata.Ecma335;
 
 namespace eindProject
 {
@@ -35,8 +36,13 @@ namespace eindProject
 
             heroTexture = Content.Load<Texture2D>("GoblinKingSpriteSheet");
 
+
+            // create input reader and bounds
+            var inputReader = new KeyboardReader();
+            var viewport = GraphicsDevice.Viewport;
+            var playArea = new Rectangle(0, 0, viewport.Width, viewport.Height);
             //create and pass IInputReader implementation
-            hero = new Hero(heroTexture, new KeyboardReader());
+            hero = new Hero(heroTexture, inputReader, playArea, moveSpeed: 200f, scale: 5f);
         }
 
         protected override void Update(GameTime gameTime)

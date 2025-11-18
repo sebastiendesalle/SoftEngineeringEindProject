@@ -11,23 +11,33 @@ namespace eindProject
         private Texture2D heroTexture;
         Animation animation;
         private Vector2 position;
-        private Vector2 speed;
+        private float moveSpeed; // pixels per second
         private IInputReader inputReader;
-        
+        private Rectangle bounds; // play area
+        private float scale;
+        private Vector2 spriteSize;
 
-        public Hero(Texture2D texture, IInputReader inputReader)
+        public Hero(Texture2D texture, IInputReader inputReader, Rectangle bounds, float moveSpeed = 200f, float scale = 5f)
         {
             // use sprite frames
             this.heroTexture = texture;
             this.inputReader = inputReader;
+            this.bounds = bounds;
+            this.moveSpeed = moveSpeed;
+            this.scale = scale;
             animation = new Animation();
+            // initial position
             position = new Vector2(1, 1);
-            speed = new Vector2(2, 2);
+
+            //frames
             animation.AddFrame(new AnimationFrame(new Rectangle(0, 64, 64, 64)));
             animation.AddFrame(new AnimationFrame(new Rectangle(64, 64, 64, 64)));
             animation.AddFrame(new AnimationFrame(new Rectangle(128, 64, 64, 64)));
             animation.AddFrame(new AnimationFrame(new Rectangle(192, 64, 64, 64)));
             animation.AddFrame(new AnimationFrame(new Rectangle(256, 64, 64, 64)));
+
+            var src = animation.CurrentFrame.SourceRectangle;
+            spriteSize = new Vector2(src.Width * scale, src.Height * scale);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -39,7 +49,7 @@ namespace eindProject
                 Color.White,
                 0f,
                 Vector2.Zero,
-                5.0f, // change size here
+                scale,
                 SpriteEffects.None,
                 0f
             );
@@ -48,12 +58,13 @@ namespace eindProject
 
         public void Update(GameTime gameTime)
         {
-            Move();
+            Move(gameTime);
             animation.Update(gameTime);
         }
 
-        private void Move()
+        private void Move(GameTime gameTime)
         {
+            float delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
             // read input
             Vector2 input = inputReader.ReadInput();
             if (input != Vector2.Zero && input.LengthSquared() > 1f)
@@ -61,14 +72,15 @@ namespace eindProject
                 input.Normalize();
             }
 
-            // make movement using speed per axis
-            Vector2 movement = new Vector2(input.X * speed.X, input.Y * speed.Y);
+            //time-based movement, better than fps based movement ofc
+            Vector2 movement = input * moveSpeed * delta;
             position += movement;
+
             //bounds
-            const float minX = 0f;
-            const float minY = 0f;
-            const float maxX = 800 - 280;
-            const float maxY = 480 - 320;
+            float minX = bounds.X;
+            float minY = bounds.Y;
+            float maxX = bounds.X + bounds.Width - spriteSize.X;
+            float maxY = bounds.Y + bounds.Height - spriteSize.Y;
 
             // stop hero from moving further
             position.X = MathHelper.Clamp(position.X, minX, maxX);

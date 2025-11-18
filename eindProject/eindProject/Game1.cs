@@ -43,6 +43,7 @@ namespace eindProject
             _obstacles.Add(new Rectangle(0, 400, 800, 50));   // Main Floor
             _obstacles.Add(new Rectangle(200, 300, 200, 30)); // Floating Platform
             _obstacles.Add(new Rectangle(500, 200, 50, 200)); // Tall Wall
+            //_obstacles.Add(new Rectangle(500, 200, 20, 40)); // TODO: see why this isn't being added
 
             // input and bounds
             var inputReader = new KeyboardReader();
@@ -56,7 +57,7 @@ namespace eindProject
                 _obstacles,
                 playArea,
                 new Vector2(50, 50), // Start Position
-                scale: 2f // I lowered scale slightly so he fits better
+                scale: 2f //hero scale
             );
         }
 

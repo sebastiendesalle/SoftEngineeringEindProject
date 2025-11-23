@@ -15,6 +15,7 @@ namespace eindProject
         private int counter;
         private double secondCounter = 0;
 
+        public bool IsLooping { get; set; } = true;
         public Animation()
         {
             frames = new List<AnimationFrame>();
@@ -41,7 +42,15 @@ namespace eindProject
 
             if (counter >= frames.Count)
             {
-                counter = 0;
+                if (IsLooping)
+                {
+                    counter = 0;
+                }
+                else
+                {
+                    counter = frames.Count - 1;
+                }
+                
             }
         }
     }

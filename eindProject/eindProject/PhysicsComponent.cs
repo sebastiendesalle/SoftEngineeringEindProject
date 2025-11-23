@@ -48,25 +48,15 @@ namespace eindProject
         public void Update(float deltaTime, int width, int height)
         {
             // box to check collision based on spritesize, adaptive
+            Position.X += Velocity.X * deltaTime;
             Rectangle collisionBox = new Rectangle((int)Position.X, (int)Position.Y, width, height);
 
-            Position.X += Velocity.X * deltaTime;
-            collisionBox.X = (int)Position.X;
-
-
-            // move setup for x axis
             foreach (var obstacle in _obstacles)
             {
-                if (collisionBox.Intersects(obstacle))
+                if (collisionBox.Intersects(obstacle)) // collision works on obstacles
                 {
-                    if (Velocity.X > 0)
-                    {
-                        Position.X = obstacle.Left - width; // move left
-                    }
-                    else if(Velocity.X < 0)
-                    {
-                        Position.X = obstacle.Right; // move right
-                    }
+                    if (Velocity.X > 0) Position.X = obstacle.Left - width; // move left
+                    else if (Velocity.X < 0) Position.X = obstacle.Right; // move right
                     collisionBox.X = (int)Position.X; // sync the box
                 }
             }
@@ -74,7 +64,7 @@ namespace eindProject
             // move setup for y axis
             Position.Y += Velocity.Y * deltaTime;
             collisionBox.Y = (int)Position.Y;
-            IsGrounded = false; // assume falling
+            IsGrounded = false; // assume falling first
 
             foreach (var obstacle in _obstacles)
             {
@@ -92,6 +82,19 @@ namespace eindProject
                         Velocity.Y = 0;
                     }
                     collisionBox.Y = (int)Position.Y; // Sync box
+                }
+            }
+
+            if (!IsGrounded && Velocity.Y >= 0)
+            {
+                Rectangle groundSensor = new Rectangle((int)Position.X, (int)Position.Y + 1, width, height);
+                foreach (var obstacle in _obstacles) // check if we touch _obstacle
+                {
+                    if (groundSensor.Intersects(obstacle))
+                    {
+                        IsGrounded = true;
+                        break;
+                    }
                 }
             }
 

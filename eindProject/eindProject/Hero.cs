@@ -51,13 +51,13 @@ namespace eindProject
 
             // jump animation
             var jumpAnim = new Animation();
+            jumpAnim.IsLooping = false; // implement loop prevention
 
             // frames from row 10
             jumpAnim.AddFrame(new AnimationFrame(new Rectangle(0, 576, 64, 64)));
             jumpAnim.AddFrame(new AnimationFrame(new Rectangle(64, 576, 64, 64)));
 
             // frames from row 11
-            jumpAnim.AddFrame(new AnimationFrame(new Rectangle(0, 640, 64, 64)));
             jumpAnim.AddFrame(new AnimationFrame(new Rectangle(64, 640, 64, 64)));
             animations.Add("Jump", jumpAnim);
 

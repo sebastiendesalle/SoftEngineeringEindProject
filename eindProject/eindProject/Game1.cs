@@ -14,18 +14,37 @@ namespace eindProject
         private Texture2D pixelTexture; // For debugging walls
         private Hero hero;
 
+        // set target window size
+        private const int targetWidth = 1920;
+        private const int targetHeight = 1080;
+
+        private Matrix _globalTransformation;
         private List<Rectangle> _obstacles;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+
+            // set windows size to windowedfullscreen compatible for all
+            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            graphics.HardwareModeSwitch = false;
+            graphics.IsFullScreen = true;
+
             IsMouseVisible = true;
+
+            Content.RootDirectory = "Content";
         }
 
         protected override void Initialize()
         {
             base.Initialize();
+
+            // scaling
+            float scaleX = (float)GraphicsDevice.Viewport.Width / targetWidth;
+            float scaleY = (float)GraphicsDevice.Viewport.Height / targetHeight;
+
+            _globalTransformation = Matrix.CreateScale(scaleX, scaleX, 1.0f);
         }
 
         protected override void LoadContent()
@@ -47,7 +66,7 @@ namespace eindProject
             // input and bounds
             var inputReader = new KeyboardReader();
             var viewport = GraphicsDevice.Viewport;
-            var playArea = new Rectangle(0, 0, viewport.Width, viewport.Height);
+            var playArea = new Rectangle(0, 0, targetWidth, targetHeight);
 
             // create hero
             hero = new Hero(
@@ -73,7 +92,7 @@ namespace eindProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(transformMatrix: _globalTransformation, samplerState: SamplerState.PointClamp);
 
             // draw the obstacles so they aren't inviz
             foreach (var rect in _obstacles)
